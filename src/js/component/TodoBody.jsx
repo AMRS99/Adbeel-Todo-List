@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const TodoBody = ({tasks,setTasks}) => {
-    const[hidden,setHidden]=useState(true);
     const DeleteTask = (deleteTodo)=>{
 
         let updateTasks = tasks.filter(todo => todo.id!==deleteTodo)
@@ -12,7 +11,7 @@ const TodoBody = ({tasks,setTasks}) => {
         return(
             <li className="list-item" key={todo.id}>
                     <label>{todo.title}</label>
-                    {hidden?null:<button onClick={()=>DeleteTask(todo.id)}>X</button>}
+                    <button onClick={()=>DeleteTask(todo.id)}>X</button>
             </li>
         )
     })

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoHeader from "./TodoHeader";
 import TodoBody from "./TodoBody";
 import TodoFooter from "./TodoFooter";
@@ -8,6 +8,24 @@ const Todo = () =>{
     const[todo,setTodo]=useState("");
     const[task,setTask]=useState([]);
     const[count,setCount]=useState(0);
+
+    useEffect(() => {
+        const getData = async () => {
+            const response = await fetch("https://playground.4geeks.com/todo/users/Vini_balon_d'or");
+            if(response.ok){
+                const data = await response.json();
+                console.log(data.todos);
+                setTask(data.todos);
+            }
+            else{
+                console.log("Error: ", response.status, response.statusText);
+
+                return {error: {status: response.status, statusText: response.statusText}}
+            }
+        }
+
+        getData();
+    },[]);
 
     return(
         <>

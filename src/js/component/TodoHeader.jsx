@@ -1,4 +1,5 @@
 import React from "react";
+import { PostData } from "../lib/actions";
 
 const TodoHeader = ({todo,setTodo,tasks,setTasks,count,setCount}) => {
 
@@ -13,22 +14,21 @@ const TodoHeader = ({todo,setTodo,tasks,setTasks,count,setCount}) => {
     }
 
     const AddTask = () => {
-        console.log(todo);
-        let newTask = {id: count, title:todo, done:false};
-        setTasks([...tasks,newTask]);
-        setCount(count+1);
+        let newTask = {label:todo, is_done:false};
 
+        PostData(newTask,setTasks);
+        setTodo("");
     }
 
     return(
         <>
         <header className="todo-header">
-            <input 
-            onKeyDown={(e)=>ValidateInput(e)}
+            <input className="input"
             type="text"
             placeholder="What need to be done?"
             onChange={e => setTodo(e.target.value)}
             value={todo}
+            onKeyDown={(e)=>ValidateInput(e)}
             />
         </header>
         </>

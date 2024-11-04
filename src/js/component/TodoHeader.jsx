@@ -1,7 +1,7 @@
 import React from "react";
 import { PostData } from "../lib/actions";
 
-const TodoHeader = ({todo,setTodo,tasks,setTasks,count,setCount}) => {
+const TodoHeader = ({todo,setTodo,tasks,setTasks}) => {
 
     const ValidateInput = (e) => {
         if(e.code == "Enter"){
@@ -25,7 +25,7 @@ const TodoHeader = ({todo,setTodo,tasks,setTasks,count,setCount}) => {
         <header className="todo-header">
             <input className="input"
             type="text"
-            placeholder="What need to be done?"
+            placeholder="What needs to be done?"
             onChange={e => setTodo(e.target.value)}
             value={todo}
             onKeyDown={(e)=>ValidateInput(e)}

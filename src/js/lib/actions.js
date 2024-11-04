@@ -24,12 +24,13 @@ export const PostData = (newTask,setTasks) =>{
     .then(response =>{
         if(!response.ok) throw new Error(response.statusText);
         getData(setTasks);
+        console.log(response);
         return response.json();
     })
     .then(data => console.log("Success", data))
     .catch(error => console.error(error));
 
-}   
+}
 
 export const DeleteTask = (deleteTodo,setTasks)=>{
         fetch(`https://playground.4geeks.com/todo/todos/${deleteTodo}`, {
@@ -43,5 +44,21 @@ export const DeleteTask = (deleteTodo,setTasks)=>{
                 throw new Error("Error! The task was not deleted or found.")
             }
         })
-        .catch(error => console.log("Error: ", response.status, response.statusText));
+        .catch(error => console.error(error));
+}
+
+export const DeleteUser = () =>{
+    fetch("https://playground.4geeks.com/todo/users/Vini_balon_d'or", {
+        method: "DELETE"
+    })
+    .then(response =>{
+        if(response.status === 204){
+            console.log("User successfull deleted");
+            
+        }
+        else{
+            throw new Error("Error! The user was not deleted or found.")
+        }
+    })
+    .catch(error => console.error(error));
 }

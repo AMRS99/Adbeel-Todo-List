@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import TodoHeader from "./TodoHeader";
 import TodoBody from "./TodoBody";
 import TodoFooter from "./TodoFooter";
-import { getData } from "../lib/actions";
+import { getData} from "../lib/actions";
 
 const Todo = () =>{
-
+    const[user,setUser]=useState("");
     const[todo,setTodo]=useState("");
     const[task,setTask]=useState([]);
     const[count,setCount]=useState(0);
@@ -23,14 +23,15 @@ const Todo = () =>{
                 setTodo={setTodo}
                 tasks = {task}
                 setTasks = {setTask}
-                count = {count}
-                setCount = {setCount}
             />
             <TodoBody 
             tasks={task}
             setTasks = {setTask}
             />
-            <TodoFooter todos={task}/>
+            <TodoFooter 
+                tasks={task}
+                setTasks={setTask}
+            />
         </div>
         </>
     )
